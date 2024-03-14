@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kycapi", "kycapi\kycapi.csproj", "{62C15738-DBF4-4A8C-9314-813F128126AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62C15738-DBF4-4A8C-9314-813F128126AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C15738-DBF4-4A8C-9314-813F128126AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C15738-DBF4-4A8C-9314-813F128126AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C15738-DBF4-4A8C-9314-813F128126AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82151DE0-0F36-4457-AD92-2CA15FE2C979}
+	EndGlobalSection
+EndGlobal
