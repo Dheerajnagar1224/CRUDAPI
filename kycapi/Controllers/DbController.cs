@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-[Route("api/entities")]
+
 [ApiController]
 public class DbController : ControllerBase
 {
@@ -19,6 +19,8 @@ public class DbController : ControllerBase
 
     // POST: api/entities
     [HttpPost]
+    [Route("api/[controller]/CreateEntity")]
+
     public IActionResult CreateEntity([FromBody] EntityDto entityDto)
     {
         try
@@ -44,6 +46,8 @@ public class DbController : ControllerBase
 
     // GET: api/entities
     [HttpGet]
+    [Route("api/[controller]/GetEntities")]
+
     public IActionResult GetEntities([FromQuery] string? addressCountry = null, [FromQuery] string? gender = null, [FromQuery] DateTime? startdate = null, [FromQuery] DateTime? enddate = null, [FromQuery] string? searchQuery = null,
     [FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string sortBy="Id", [FromQuery] string sortDirection="asc")
     {
@@ -75,7 +79,9 @@ public class DbController : ControllerBase
 
 
     // Getbyid: api/entities/{id}   
-    [HttpGet("{id}")]
+    [HttpGet]
+    [Route("api/[controller]/Getbyid/{id}")]
+
     public IActionResult Getbyid(string id)
     {
         
@@ -104,7 +110,8 @@ public class DbController : ControllerBase
 
 
     // PUT: api/entities/{id}
-    [HttpPut("{id}")]
+    [HttpPut]
+    [Route("api/[controller]/UpdateEntity/{id}")]
     public IActionResult UpdateEntity(string id, [FromBody] EntityDto entityDto)
     {
       
@@ -131,7 +138,8 @@ public class DbController : ControllerBase
     }
 
     // DELETE: api/entities/{id}
-    [HttpDelete("{id}")]
+    [HttpDelete]
+    [Route("api/[controller]/DeleteEntity/{id}")]
     public IActionResult DeleteEntity(string id)
     {
        
