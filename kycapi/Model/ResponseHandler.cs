@@ -4,11 +4,11 @@ namespace kycapi.Model
 {
     public class ResponseHandler
     {
-        public static ApiResponse GetExceptionResponse(Exception ex)
+        public static ApiResponse GetExceptionResponse(String ex)
         {
             ApiResponse response = new ApiResponse();
             response.code = "1";
-            response.ResponseData = ex.Message;
+            response.ResponseData = ex;
             return response;
         }
 

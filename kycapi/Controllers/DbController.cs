@@ -24,21 +24,21 @@ public class DbController : ControllerBase
         try
         {
            
-            _entityService.CreateEntity(entityDto);
-            _logger.LogInformation("POSTED");
+            _entityService.CreateEntity(entityDto); 
+            _logger.LogInformation("CreateEntity => POSTED");
             ResponseType type = ResponseType.Success;
             return Ok(ResponseHandler.GetAppResponse(type, entityDto));
         }
         catch (InvalidDataException ex)
         {
-            _logger.LogInformation("NOT POSTED");
+            _logger.LogError("CreateEntity => NOT POSTED",ex.Message);
             ResponseType type = ResponseType.Notfound;
             return NotFound(ResponseHandler.GetAppResponse(type, null));
         }
         catch (Exception ex)
         {
-            _logger.LogError("ERROR");
-            return StatusCode(StatusCodes.Status500InternalServerError, ResponseHandler.GetExceptionResponse(ex));
+            _logger.LogError("CreateEntity => ERROR", ex.Message);  
+            return StatusCode(StatusCodes.Status500InternalServerError, ResponseHandler.GetExceptionResponse("Something went wrong"));
         }
     }
 
@@ -55,20 +55,20 @@ public class DbController : ControllerBase
         {
             var entities = _entityService.GetEntities(addressCountry, gender, startdate, enddate, searchQuery, skip,
        pageSize, sortBy, sortDirection);
-            _logger.LogInformation("FETCHED");
+            _logger.LogInformation("GetEntities => FETCHED");
             ResponseType type = ResponseType.Success;
             return Ok(ResponseHandler.GetAppResponse(type, entities));
         }
         catch (InvalidDataException ex)
         {
-            _logger.LogInformation("NOT FETCHED");
+            _logger.LogError("GetEntities => NOT FETCHED", ex.Message);
             ResponseType type = ResponseType.Notfound;
             return NotFound(ResponseHandler.GetAppResponse(type, null));
         }
         catch (Exception ex)
         {
-            _logger.LogError("ERROR");
-            return StatusCode(StatusCodes.Status500InternalServerError, ResponseHandler.GetExceptionResponse(ex));
+            _logger.LogError("GetEntities => ERROR", ex.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, ResponseHandler.GetExceptionResponse("Something went wrong"));
         }
 
     }
@@ -83,22 +83,22 @@ public class DbController : ControllerBase
         try
         {
             var entity = _entityService.Getbyid(id);
-            _logger.LogInformation("FETCHED");
+            _logger.LogInformation("Getbyid => FETCHED");
             ResponseType type = ResponseType.Success;
             return Ok(ResponseHandler.GetAppResponse(type, entity));
           
         }
         catch(InvalidDataException ex)
         {
-            _logger.LogInformation("ID NOT FOUND");
+            _logger.LogError("Getbyid => ID NOT FOUND", ex.Message);
             ResponseType type = ResponseType.Notfound;
             return NotFound(ResponseHandler.GetAppResponse(type,null));
        
         }
         catch (Exception ex)
         {
-            _logger.LogError("ERROR");
-            return  StatusCode(StatusCodes.Status500InternalServerError,ResponseHandler.GetExceptionResponse(ex));
+            _logger.LogError("Getbyid => ERROR", ex.Message);
+            return  StatusCode(StatusCodes.Status500InternalServerError,ResponseHandler.GetExceptionResponse("Something went wrong"));
         }
     }
 
@@ -113,19 +113,19 @@ public class DbController : ControllerBase
         {
             ResponseType type = ResponseType.Success;
             _entityService.UpdateEntity(id, entityDto);
-            _logger.LogInformation("UPDATED");
-            return Ok(type);
+            _logger.LogInformation("UpdateEntity => UPDATED");
+               return Ok(ResponseHandler.GetAppResponse(type,null));
         }
         catch (InvalidDataException ex)
         {
-            _logger.LogInformation("ID NOT FOUND");
+            _logger.LogError("UpdateEntity => ID NOT FOUND", ex.Message);
             ResponseType type = ResponseType.Notfound;
             return NotFound(ResponseHandler.GetAppResponse(type,null));
         }
         catch (Exception ex)
         {
-            _logger.LogError("ERROR");
-            return StatusCode(StatusCodes.Status500InternalServerError, ResponseHandler.GetExceptionResponse(ex));
+            _logger.LogError("UpdateEntity => ERROR", ex.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, ResponseHandler.GetExceptionResponse("Something went wrong"));
         }
 
     }
@@ -139,21 +139,22 @@ public class DbController : ControllerBase
         try
         {
             _entityService.DeleteEntity(id);
-            _logger.LogInformation("DELETED");
+            _logger.LogInformation("DeleteEntity => DELETED");
             ResponseType type = ResponseType.Success;
-            return Ok(type);
+            return Ok(ResponseHandler.GetAppResponse(type,null));
         }
         catch (InvalidDataException ex)
         {
-            _logger.LogInformation("ID NOT FOUND");
+            _logger.LogError("DeleteEntity => ID NOT FOUND",ex.Message);
             ResponseType type = ResponseType.Notfound;
             return NotFound(ResponseHandler.GetAppResponse(type, null));
         }
         catch (Exception ex)
         {
-            _logger.LogError("ERROR");
-            return StatusCode(StatusCodes.Status500InternalServerError, ResponseHandler.GetExceptionResponse(ex));
+            _logger.LogError("DeleteEntity => ERROR", ex.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, ResponseHandler.GetExceptionResponse("Something went wrong"));
         }
+     
     }
 
    
